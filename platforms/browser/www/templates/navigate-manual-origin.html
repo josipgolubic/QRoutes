@@ -1,0 +1,34 @@
+<ion-view title="Origens">
+    <ion-content class="modals" has-header="true">
+        <div id="manual-content">
+
+            <div id="originsList" class="list">
+                <!-- <label class="item item-radio">
+        <input type="radio" name="group1">
+        <div class="item-content">
+          Entrada Norte
+        </div>
+        <i class="radio-icon ion-checkmark"></i>
+      </label>
+
+      <label class="item item-radio">
+        <input type="radio" name="group1">
+        <div class="item-content">
+          Entrada Sul
+        </div>
+        <i class="radio-icon ion-checkmark"></i>
+      </label> -->
+
+                <label class="item item-radio" ng-repeat="pos in map.getBuildings()[0].getFloors()[0].getPositions()" ng-click="setOrigin(pos)">
+                    <input type="radio" name="group">
+                    <div class="item-content">
+                        {{ pos.getDescription() }}: {{ pos.getX() }}, {{ pos.getY() }}
+                    </div>
+                    <i class "radio-icon ion-checkmark"></i>
+                </label>
+
+            </div>
+            </center>
+        </div>
+    </ion-content>
+</ion-view>

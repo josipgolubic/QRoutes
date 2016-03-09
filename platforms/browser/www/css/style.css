@@ -1,0 +1,194 @@
+/* Empty. Add your own CSS if you like */
+
+.slider {
+    height: 100%;
+    background-color: #F5F5F5;
+}
+ion-view {
+    /*-webkit-overflow-scrolling: touch;*/
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    font-family: 'Open Sans', sans-serif;
+}
+ion-content {
+    background-color: #F5F5F5;
+    font-family: 'Open Sans', sans-serif;
+    /*background-image: url('../assets/compass2.jpg');*/
+    /*background-repeat: no-repeat;*/
+    /*background-position: bottom;*/
+}
+.pane {
+    font-size: 1.7em;
+}
+/*--- Navigate divs ---*/
+
+#origin-div {
+    width: 100%;
+}
+#navigate {
+    position: absolute;
+    z-index: 500;
+    width: 100%;
+    padding-top: 58px;
+    background-color: white;
+    border: 1px solid rgb(221, 221, 221);
+}
+#help-bar {
+    z-index: 499;
+    padding-top: 367px;
+    border: 1px solid rgb(221, 221, 221);
+    width: 100%;
+    box-shadow: 0px 1px 5px 1px rgba(50, 50, 50, 0.1);
+}
+.item-input {
+    height: 59px;
+    width: 85%;
+    margin-right: 10px;
+}
+.camera-button {
+    height: 59px;
+    width: 5%;
+    background-size: 40px 40px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url('../assets/qrcode.png');
+}
+#div-navigate-button {
+    width: 100%;
+}
+#navigate-button {
+    border-radius: 50px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: block;
+    height: 75px;
+    width: 75px;
+    border: 1px solid rgb(221, 221, 221);
+    border-radius: 50%;
+    /*box-shadow: 0 0 1px grey;*/
+    font-weight: bold;
+    text-align: center;
+    font-size: 0.6em;
+}
+.custom-icon {
+    color: #B80000;
+}
+/*--- End navigate divs ---*/
+
+li {
+    border: none;
+}
+.piso {
+    height: 50px;
+    font-family: 'Open Sans', sans-serif;
+    text-align: center;
+    font-size: 1.7em;
+}
+.list .item.item-accordion {
+    line-height: 38px;
+    -webkit-transition: 0.9s;
+    -moz-transition: 0.9s;
+    -ms-transition: 0.9s;
+    -o-transition: 0.9s;
+    transition: 0.09s all linear;
+}
+.list .item.item-accordion.ng-hide {
+    line-height: 0px;
+}
+.list .item.item-accordion.ng-hide-add, .list .item.item-accordion.ng-hide-remove {
+    display: block !important;
+}
+/*--- Directions ---*/
+
+#no-directions {
+    padding-top: 50px;
+    color: #858585;
+    text-align: center;
+}
+span {
+    display: inline-block;
+    vertical-align: middle;
+    line-height: normal;
+}
+#div-directions-card {
+    z-index: 999;
+    width: 100%;
+    padding-top: 365px;
+}
+.directions-card {
+    z-index: 1;
+    position: relative;
+    background-color: white;
+}
+/*--- End directions ---*/
+
+.opacity {
+    opacity: 0.5;
+}
+#origins {
+    margin-top: -13px;
+    box-shadow: none;
+}
+#destinations {
+    margin-top: -13px;
+    box-shadow: none;
+}
+/*--- Animations ---*/
+
+/*Animation navigate div */
+
+.upTranslate {
+    -webkit-transition: 0.5s;
+    -moz-transition: 0.5s;
+    -ms-transition: 0.5s;
+    -o-transition: 0.5s;
+    transition: 0.5s;
+    margin-top: -230px !important;
+}
+.downTranslate {
+    -webkit-transition: 0.5s;
+    -moz-transition: 0.5s;
+    -ms-transition: 0.5s;
+    -o-transition: 0.5s;
+    transition: 0.5s;
+    margin-top: 0px !important;
+}
+/*--- End animation navigate div --- */
+
+#swap-button {
+    width: 39px;
+    height: 39px;
+    border: 0px;
+    transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    /* IE 9 */
+    -webkit-transform: rotate(90deg);
+}
+#background-image {
+    /*position: fixed;*/
+    /*z-index: -100;*/
+    /*  background-image: url('../assets/compass2.jpg');*/
+    /*width: 1024px;*/
+    /*height:  683px;*/
+    /*background-position: center;*/
+    /*background-repeat: no-repeat;*/
+    /*  -webkit-filter: blur(5px);
+    -moz-filter: blur(5px);
+    -o-filter: blur(5px);
+    -ms-filter: blur(5px);
+    filter: blur(5px);*/
+}
+.color {
+    color: white;
+    border: 1px solid #DDDDDD;
+    border-radius: 2px;
+}
+.placeholder-icon {
+    margin-left: 10px;
+}
+#destiny {
+    margin-left: 4px;
+}
+#division {
+    width: 100%;
+    z-index: 1000;
+}

@@ -1,0 +1,17 @@
+<!--
+  This template loads for the 'tab.adopt' state (app.js)
+-->
+<ion-view title="Navegação">
+    <ion-content>
+
+        <div class="card" ng-repeat="step in steps">
+            <div class="item item-text-wrap">
+                {{ step.getDescription() }}
+            </div>
+            
+        </div>
+        
+        <div class="card"></div>
+
+    </ion-content>
+</ion-view>

@@ -1,0 +1,126 @@
+<ion-view title="m-QRoutes: Navegação">
+    <!-- ORIGIN/DESTINATION -->
+    <ion-slide-box on-slide-changed="slideChanged(index)" show-pager="false" has-header="true"
+    disable-scroll="true">
+        <ion-slide>
+            <div id="view">
+                <div id="navigate">
+                    <!-- ORIGIN -->
+                    <div id="origin-div" class="item-input-inset">
+                        <label class="item-input padding color">
+                            <i class="icon ion-home placeholder-icon"></i>
+                            <input id="input-origin" class="opacity" type="search" ng-if="origin" placeholder="{{ origin.getDescription() }}" ng-change="search(); setIsOrigin(true)" ng-model="dataOrigins.search">
+
+                            <input id="input-origin" class="opacity" type="search" ng-if="origin == null" placeholder="Origem" ng-change="search(); setIsOrigin(true)" ng-model="dataOrigins.search">
+                        </label>
+                        <button class="button button-light camera-button" ng-click="scan('origin')"></button>
+                    </div>
+                    <!-- AUTO COMPLETE POSITIONS -->
+                    <div id="origins" class="card">
+                        <li class="item" ng-if="isOrigin" ng-repeat="place in dataOrigins.places" ng-click="clickAutoComplete(place)">
+                            {{ place.description }}
+                        </li>
+                    </div>
+
+                    <center>
+                        <button id="swap-button" class="button button-light" ng-click="switchOriginToDestination()">
+                            <i class="icon ion-arrow-swap"></i>
+                        </button>
+                    </center>
+
+                    <!-- DESTINATION -->
+                    <div id="destination-div" class="item-input-inset">
+                        <label class="item-input padding color">
+                            <i class="icon ion-location placeholder-icon"></i>
+                            <input id="input-destination" class="opacity" type="search" ng-if="destination" placeholder="{{ destination.getDescription() }}" ng-change="search(); setIsOrigin(false)" ng-model="dataDestinations.search">
+                            <input id="input-destination" class="opacity" type="search" ng-if="destination == null" placeholder="Destino" ng-change="search(); setIsOrigin(false)" ng-model="dataDestinations.search">
+                        </label>
+
+                        <button class="button button-light camera-button" ng-click="scan('destination')"></button>
+                    </div>
+                    <!-- AUTO COMPLETE POSITIONS -->
+                    <div id="destinations" class="card">
+                        <li class="item" ng-if="!isOrigin" ng-repeat="place in dataDestinations.places" ng-click="clickAutoComplete(place)">
+                            {{ place.description }}
+                        </li>
+                    </div>
+                    <center>
+                        <button id="navigate-button" class="button button-stable" ng-click="navigate(false)">
+                            Iniciar
+                        </button>
+                    </center>
+                </div>
+                <div id="help-bar" class="list">
+                    <div class="item tabs tabs-secondary tabs-icon-left">
+                        <div class="tab-item">
+                            <i class="icon ion-home"></i>
+                            {{ origin.getDescription() }}
+                        </div>
+                        <div class="tab-item">
+                            <i class="icon ion-location"></i>
+                            {{ destination.getDescription() }}
+                        </div>
+                        <div class="tab-item" ng-click="change()" style="color: #B80000;" ng-if="stairsSelected.checked">
+                            <i class="icon ion-ios7-gear custom-icon"></i>
+                            Sem Escadas
+                        </div>
+                        <div class="tab-item" ng-click="change()" style="color: #B80000;" ng-if="!stairsSelected.checked">
+                            <i class="icon ion-ios7-gear custom-icon"></i>
+                            Com Escadas
+                        </div>
+                        <div ng-click="change()">
+                            <i class="icon ion-chevron-right custom-icon"> </i>
+                        </div>
+                    </div>
+                </div>
+                <!-- DIRECTIONS -->
+                <ion-content id="content" has-header="true">
+                    <div id="div-directions-card">
+                        <div id="no-directions">
+                            <span>Navegação não iniciada</span>
+                        </div>
+                        <!-- DIRECTIONS FROM POS TO POS -->
+                    </div>
+                    <ion-list>
+                        <div ng-repeat="floor in floors" class="card">
+                            <ion-item class="item-stable piso" ng-click="toggleGroup(floor)" ng-class="{active: isGroupShown(floor)}" style="background-color:#B80000;color:white;">
+                                <i class="icon" ng-class="isGroupShown(floor) ? 'ion-minus' : 'ion-plus'"></i>
+                                &nbsp; Piso {{ floor[0].getFloor() }}
+                            </ion-item>
+
+                            <ion-item class="item-accordion" ng-repeat="step in floor" ng-show="isGroupShown(floor)">
+                                <li class="item-checkbox" style="list-style-type: none;">
+                                    <label class="checkbox">
+                                        <input type="checkbox" ng-click="stepCheck(step, floor)">
+                                    </label>
+                                    <pre ng-if="step.getDescription().toLowerCase().indexOf('esquerda') > -1"><i class="icon ion-arrow-left-a"></i>  {{ step.getDescription() }}</pre>
+                                    <pre ng-if="step.getDescription().toLowerCase().indexOf('direita') > -1"><i class="icon ion-arrow-right-a"></i>  {{ step.getDescription() }}</pre>
+                                    <pre ng-if="step.getDescription().toLowerCase().indexOf('frente') > -1"><i class="icon ion-arrow-up-a"></i>  {{ step.getDescription() }}</pre>
+                                    <pre ng-if="!(step.getDescription().toLowerCase().indexOf('frente') > -1) &&
+                                    !(step.getDescription().toLowerCase().indexOf('esquerda') > -1) && !(step.getDescription().toLowerCase().indexOf('direita') > -1)"><i class="icon ion-arrow-up-a"></i>  {{ step.getDescription() }}</pre>
+                                </li>
+                            </ion-item>
+                        </div>
+                    </ion-list>
+                </ion-content>
+            </div>
+        </ion-slide>
+
+        <ion-slide>
+            <ion-view>
+                <div class="bar bar-subheader">
+                <button class="button button-icon icon ion-chevron-left" ng-click="goBack()"> Voltar</button>
+                    <h2 class="title">Definições</h2>
+                </div>
+                <ion-content has-header="true">
+                    <div class="list padding" style="margin-top:50px;height:100%;">
+                        <div class="item item-divider" style="background-color:#B80000;color:white">
+                            Acessibilidade
+                        </div>
+                        <ion-toggle toggle-class="toggle-positive" ng-model="stairsSelected.checked" ng-change="isStairsChange()">Percurso sem escadas</ion-toggle>
+                    </div>
+                </ion-content>
+            </ion-view>
+        </ion-slide>
+    </ion-slide-box>
+</ion-view>
